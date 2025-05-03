@@ -1,8 +1,9 @@
 import { FaEye, FaStar } from "react-icons/fa";
 import { BsShareFill, BsBookmarkFill } from "react-icons/bs";
+import { Link } from "react-router";
 
 const NavCard = ({ news }) => {
-  const { title, image_url, details, author, rating, total_view } = news;
+  const {id, title, image_url, details, author, rating, total_view } = news;
 
   const formatDate = (isoDate) => {
     return new Date(isoDate).toLocaleDateString("en-GB", {
@@ -46,7 +47,13 @@ const NavCard = ({ news }) => {
       {/* Description */}
       <p className="text-gray-700 text-sm">
         {details.length > 200 ? details.slice(0, 200) + "..." : details}
-        <span className="text-blue-500 ml-1 cursor-pointer">Read More</span>
+        <Link
+          to={`/news-details/${id}`}
+          className="text-blue-500 ml-1 cursor-pointer"
+          onClick={() => window.scrollTo(0,200)}
+        >
+          Read More
+        </Link>
       </p>
 
       {/* Footer: rating + views */}
